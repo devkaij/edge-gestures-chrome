@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Edge Gestures for Chrome",
+  "version": "0.1.3",
+  "description": "复刻 Edge 右键滑动手势：16 手势 + 实时提示气泡，轨迹观感逐帧对标 Edge。",
+  "minimum_chrome_version": "110",
+  "permissions": ["sessions", "storage"],
+  "action": { "default_title": "Edge Gestures 设置", "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" } },
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "background": { "service_worker": "background/service_worker.js" },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "shared/gestures.js",
+        "content/engine.js",
+        "content/trail.js",
+        "content/bubble.js",
+        "content/scroll.js",
+        "content/actions.js",
+        "content/main.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "options_ui": { "page": "options/options.html", "open_in_tab": true }
+}

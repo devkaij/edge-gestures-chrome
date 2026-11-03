@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>Edge Gestures 设置</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main>
+    <h1>Edge Gestures <small>for Chrome</small></h1>
+    <p class="sub">复刻 Edge 右键滑动手势 —— 按住右键拖动触发，纯右键正常弹菜单。</p>
+
+    <section>
+      <label class="row">
+        <span class="name">启用手势</span>
+        <input type="checkbox" id="enabled" />
+      </label>
+      <label class="row">
+        <span class="name">显示操作提示气泡</span>
+        <input type="checkbox" id="showHint" />
+      </label>
+      <label class="row">
+        <span class="name">轨迹颜色</span>
+        <input type="color" id="trailColor" />
+      </label>
+      <label class="row">
+        <span class="name">轨迹宽度（CSS px，Edge 实测 4.33）</span>
+        <input type="number" id="trailWidth" min="1" max="12" step="0.11" />
+      </label>
+      <label class="row">
+        <span class="name">触发距离（CSS px，越小越灵敏）</span>
+        <input type="number" id="startThreshold" min="4" max="40" step="1" />
+      </label>
+      <label class="row">
+        <span class="name">转向阈值（CSS px，越大越不容易误切段）</span>
+        <input type="number" id="turnThreshold" min="16" max="120" step="2" />
+      </label>
+    </section>
+
+    <details>
+      <summary>手势表（与 Edge 114+ 一致）</summary>
+      <table>
+        <tr><th>笔画</th><th>动作</th></tr>
+        <tr><td>←</td><td>后退</td></tr>
+        <tr><td>→</td><td>前进</td></tr>
+        <tr><td>↑</td><td>向上滚动一屏</td></tr>
+        <tr><td>↓</td><td>向下滚动一屏</td></tr>
+        <tr><td>↓→ / ←→</td><td>关闭标签页</td></tr>
+        <tr><td>←↑ / →←</td><td>恢复关闭的标签页</td></tr>
+        <tr><td>→↑</td><td>打开新标签页</td></tr>
+        <tr><td>→↓</td><td>刷新</td></tr>
+        <tr><td>↑← / ↑→</td><td>切换左/右标签页</td></tr>
+        <tr><td>↓←</td><td>停止加载</td></tr>
+        <tr><td>←↓</td><td>关闭所有标签页</td></tr>
+        <tr><td>↑↓</td><td>滚动到页面底部</td></tr>
+        <tr><td>↓↑</td><td>滚动到页面顶部</td></tr>
+      </table>
+    </details>
+
+    <p class="note">
+      已知限制（扩展平台天花板）：chrome:// 页面、Chrome 商店、PDF 查看器、新标签页无法注入；
+      全屏视频之上画不出轨迹；iframe 内起始的拖动轨迹会被裁剪（路线图 M4）。
+    </p>
+    <p id="status"></p>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>
